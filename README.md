@@ -1,10 +1,5 @@
 # beegosession
-the session module of beego.
-
-session
-==============
-
-session is a Go session manager. It can use many session providers. Just like the `database/sql` and `database/sql/driver`.
+the session module of [beego](https://github.com/astaxie/beego/).
 
 ## How to install?
 
