@@ -38,7 +38,6 @@ import (
 	"strings"
 	"sync"
 	"github.com/garyburd/redigo/redis"
-	"github.com/astaxie/beego/session"
 )
 
 var redispovider = &RedisProvider{}
@@ -96,7 +95,7 @@ func (rs *SessionStore) SessionID() string {
 
 // SessionRelease save session values to redis
 func (rs *SessionStore) SessionRelease(w http.ResponseWriter) {
-	b, err := session.EncodeGob(rs.values)
+	b, err := EncodeGob(rs.values)
 	if err != nil {
 		return
 	}
@@ -183,7 +182,7 @@ func (rp *RedisProvider) SessionRead(sid string) (Store, error) {
 	if len(kvs) == 0 {
 		kv = make(map[interface{}]interface{})
 	} else {
-		if kv, err = session.DecodeGob([]byte(kvs)); err != nil {
+		if kv, err = DecodeGob([]byte(kvs)); err != nil {
 			return nil, err
 		}
 	}
